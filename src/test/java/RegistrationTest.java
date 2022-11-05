@@ -1,14 +1,14 @@
-import PageObject.MainPage;
+import generator.LoginUser;
+import generator.OrderBurger;
+import generator.RegistrationUser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.time.Duration;
 
@@ -24,6 +24,7 @@ public class RegistrationTest {
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         webDriver.get("https://stellarburgers.nomoreparties.site/");
+
     }
 
     @After
@@ -36,13 +37,16 @@ public class RegistrationTest {
 
     @Test
     public void userShouldBeCreated() {
-        MainPage mainPage = new MainPage(webDriver);
-        mainPage.clickOnLoginButton();
-        mainPage.clickOnRegisterButton();
-        mainPage.userRegistrationData("name", "test-mail356@gmail.com", "123456");
-        mainPage.clickOnStartRegistrationButton();
-        mainPage.userLoginData("test-mail356@gmail.com", "123456");
-        mainPage.clickOnLoginButtonWithCreatedUser();
-        assertTrue(webDriver.findElement(By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg'][text()='Оформить заказ']")).getText().contains("Оформить заказ"));
+        RegistrationUser registrationUser = new RegistrationUser(webDriver);
+        LoginUser loginUser = new LoginUser(webDriver);
+        OrderBurger orderBurger = new OrderBurger(webDriver);
+        loginUser.clickOnLoginButton();
+        registrationUser.clickOnRegistrationButton();
+        registrationUser.userRegistrationData("name", "test-mail372@gmail.com", "123456");
+        registrationUser.clickOnStartRegistrationButton();
+        loginUser.userLoginData("test-mail372@gmail.com", "123456");
+        loginUser.clickOnLoginButtonWithCreatedUser();
+        boolean isOrderPage = orderBurger.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isOrderPage);
     }
 }

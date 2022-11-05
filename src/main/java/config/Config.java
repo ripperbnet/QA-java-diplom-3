@@ -1,12 +1,14 @@
-package PageObject;
+package config;
 
 import org.openqa.selenium.WebDriver;
 
-public abstract class BasePage {
+public abstract class Config {
 
     protected final WebDriver webDriver;
 
-    protected BasePage(WebDriver webDriver) {
+    protected Config(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
+
+
 }
