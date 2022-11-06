@@ -4,9 +4,9 @@ import config.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class OrderPage extends Config {
+public class OrderPageObject extends Config {
 
-    public OrderPage(WebDriver webDriver) {
+    public OrderPageObject(WebDriver webDriver) {
         super(webDriver);
     }
 

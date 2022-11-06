@@ -4,9 +4,9 @@ import config.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegistrationPage extends Config {
+public class RegistrationPageObject extends Config {
 
-    protected RegistrationPage(WebDriver webDriver) {
+    protected RegistrationPageObject(WebDriver webDriver) {
         super(webDriver);
     }
 
@@ -19,5 +19,4 @@ public class RegistrationPage extends Config {
     protected By passwordField = By.xpath(".//input[@class='text input__textfield text_type_main-default'][@name='Пароль']");
 
     protected By registrationButton = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa'][text()='Зарегистрироваться']");
-
 }

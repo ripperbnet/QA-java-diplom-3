@@ -1,19 +1,21 @@
 package generator;
 
-import PageObject.LoginPage;
+import PageObject.LoginPageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginUser extends LoginPage {
+public class LoginPage extends LoginPageObject {
 
-    public LoginUser(WebDriver webDriver) {
+    public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public void clickOnLoginButton() {
+        new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
         webDriver.findElement(loginButton).click();
     }
 
@@ -25,7 +27,7 @@ public class LoginUser extends LoginPage {
         webDriver.findElement(passwordField).sendKeys(password);
     }
 
-    public void userLoginData(String email, String password) {
+    public void setLoginData(String email, String password) {
         setEmail(email);
         setPassword(password);
     }

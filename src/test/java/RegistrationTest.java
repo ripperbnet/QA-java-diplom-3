@@ -1,7 +1,9 @@
-import generator.LoginUser;
-import generator.OrderBurger;
-import generator.RegistrationUser;
+
+import generator.LoginPage;
+import generator.OrderPage;
+import generator.RegistrationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,19 +14,38 @@ import org.openqa.selenium.html5.WebStorage;
 
 import java.time.Duration;
 
+
 import static org.junit.Assert.assertTrue;
 
 public class RegistrationTest {
 
     private WebDriver webDriver;
 
+    private LoginPage loginPage;
+
+    private OrderPage orderPage;
+
+    private RegistrationPage registrationPage;
+
+    private String email = "dinosaur" + RandomStringUtils.randomNumeric(4) + "@yandex.ru";
+
+    private String password = "password";
+
+    private String name = "Test-name";
+
+
+
     @Before
     public void setUpChrome() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        webDriver.get("https://stellarburgers.nomoreparties.site/");
 
+        webDriver.get("https://stellarburgers.nomoreparties.site/");
+        loginPage = new LoginPage(webDriver);
+        registrationPage = new RegistrationPage(webDriver);
+        orderPage = new OrderPage(webDriver);
     }
 
     @After
@@ -37,16 +58,13 @@ public class RegistrationTest {
 
     @Test
     public void userShouldBeCreated() {
-        RegistrationUser registrationUser = new RegistrationUser(webDriver);
-        LoginUser loginUser = new LoginUser(webDriver);
-        OrderBurger orderBurger = new OrderBurger(webDriver);
-        loginUser.clickOnLoginButton();
-        registrationUser.clickOnRegistrationButton();
-        registrationUser.userRegistrationData("name", "test-mail372@gmail.com", "123456");
-        registrationUser.clickOnStartRegistrationButton();
-        loginUser.userLoginData("test-mail372@gmail.com", "123456");
-        loginUser.clickOnLoginButtonWithCreatedUser();
-        boolean isOrderPage = orderBurger.isOrderButtonDisplayed();
-        assertTrue("Button is not displayed", isOrderPage);
+        loginPage.clickOnLoginButton();
+        registrationPage.clickOnRegistrationButton();
+        registrationPage.setRegistrationData(name, email, password);
+        registrationPage.clickOnStartRegistrationButton();
+        loginPage.setLoginData(email, password);
+        loginPage.clickOnLoginButtonWithCreatedUser();
+        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isButtonDisplayed);
     }
 }
