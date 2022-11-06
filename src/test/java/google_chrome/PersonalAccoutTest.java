@@ -2,9 +2,11 @@ package google_chrome;
 
 import generator.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import jdk.jfr.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
@@ -51,6 +53,8 @@ public class PersonalAccoutTest {
     }
 
     @Test
+    @DisplayName("Проверка перехода в личный кабинет по кнопке «Личный кабинет»")
+    @Description("Позитивный тест из браузера google chrome")
     public void loginVerificationInPersonalAccount() {
         mainPage.clickOnLoginButton();
         loginPage.setLoginData(email, password);
@@ -61,6 +65,8 @@ public class PersonalAccoutTest {
     }
 
     @Test
+    @DisplayName("Переход в конструктор по кнопке «Конструктор» из личного кабинета")
+    @Description("Позитивный тест из браузера google chrome")
     public void clickOnConstructorFromPersonalAccount() {
     mainPage.clickOnLoginButton();
     loginPage.setLoginData(email, password);
@@ -72,6 +78,8 @@ public class PersonalAccoutTest {
     }
 
     @Test
+    @DisplayName("Переход в конструктор по клику на логотип")
+    @Description("Позитивный тест из браузера google chrome")
     public void clickOnBurgersLogoFromPersonalAccount() {
         mainPage.clickOnLoginButton();
         loginPage.setLoginData(email, password);
@@ -83,6 +91,8 @@ public class PersonalAccoutTest {
     }
 
     @Test
+    @DisplayName("Выход из аккаунта по кнопке «Выход» из личного кабинета")
+    @Description("Позитивный тест из браузера google chrome")
     public void clickOnExitButton() {
         mainPage.clickOnLoginButton();
         loginPage.setLoginData(email, password);

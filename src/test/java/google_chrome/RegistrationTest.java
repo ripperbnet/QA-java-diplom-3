@@ -5,10 +5,12 @@ import generator.MainPage;
 import generator.OrderPage;
 import generator.RegistrationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
@@ -62,6 +64,8 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Регистрация пользователя с валидными данными")
+    @Description("Позитивный тест из браузера google chrome")
     public void creatingUseWithValidData() {
         mainPage.clickOnLoginButton();
         registrationPage.clickOnRegistrationButton();
@@ -71,6 +75,8 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Регистрация пользователя с невалидным паролем (5 символов)")
+    @Description("Негативный тест из браузера google chrome")
     public void creatingUserWithInvalidPassword() {
         mainPage.clickOnLoginButton();
         registrationPage.clickOnRegistrationButton();

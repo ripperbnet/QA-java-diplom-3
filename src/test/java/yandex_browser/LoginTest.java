@@ -1,10 +1,9 @@
-package google_chrome;
+package yandex_browser;
 
 import generator.LoginPage;
 import generator.MainPage;
 import generator.OrderPage;
 import generator.RegistrationPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
@@ -40,8 +39,9 @@ public class LoginTest {
     private String name = "text-name";
 
     @Before
-    public void setUpChrome() {
-        WebDriverManager.chromedriver().setup();
+    public void setUpYandex() {
+
+        System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -53,7 +53,7 @@ public class LoginTest {
     }
 
     @After
-    public void tearDownChrome() {
+    public void tearDownYandex() {
         webDriver.manage().deleteAllCookies();
         ((WebStorage) webDriver).getSessionStorage().clear();
         ((WebStorage) webDriver).getLocalStorage().clear();
@@ -62,7 +62,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("Логин по кнопке «Войти в аккаунт»")
-    @Description("Positive test on google chrome browser")
+    @Description("Positive test on google yandex browser")
     public void loginByClickingTheLoginButton() {
         mainPage.clickOnLoginButton();
         loginPage.setLoginData(emailForLogin, password);
@@ -73,7 +73,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("Логин по кнопке «Личный кабинет»")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест из браузера yandex browser")
     public void loginByPersonalAccountButton() {
         mainPage.clickOnPersonalAccountButton();
         loginPage.setLoginData(emailForLogin, password);
@@ -84,7 +84,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("Логин через форму регистрации")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест из браузера yandex browser")
     public void loginViaRegistrationForm() {
         mainPage.clickOnLoginButton();
         registrationPage.clickOnRegistrationButton();
@@ -98,7 +98,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("Логин через форму восстановления пароля")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест из браузера yandex browser")
     public void loginViaPasswordRecoverForm() {
         mainPage.clickOnLoginButton();
         loginPage.clickOnPasswordRecoverButton();

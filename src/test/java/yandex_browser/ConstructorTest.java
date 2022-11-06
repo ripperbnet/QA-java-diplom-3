@@ -1,10 +1,9 @@
-package google_chrome;
+package yandex_browser;
 
 import generator.LoginPage;
 import generator.MainPage;
 import generator.OrderPage;
 import generator.RegistrationPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
@@ -38,8 +37,9 @@ public class ConstructorTest {
     private String emailForRegistration = "test-clients" + RandomStringUtils.randomNumeric(3) + "@yandex.ru";
 
     @Before
-    public void setUpChrome() {
-        WebDriverManager.chromedriver().setup();
+    public void setUpYandex() {
+
+        System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -51,7 +51,7 @@ public class ConstructorTest {
     }
 
     @After
-    public void tearDownChrome() {
+    public void tearDownYandex() {
         webDriver.manage().deleteAllCookies();
         ((WebStorage) webDriver).getSessionStorage().clear();
         ((WebStorage) webDriver).getLocalStorage().clear();
@@ -60,7 +60,7 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Проверка отображения булок/соусов/начинок в конструкторе после логина")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест из браузера yandex browser")
     public void validatingConstructorAfterLogin() {
         mainPage.clickOnLoginButton();
         loginPage.setLoginData(email, password);
@@ -78,7 +78,7 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Проверка отображения булок/соусов/начинок в конструкторе БЕЗ логина")
-    @Description("Позитивный тест из браузера google chrome")
+
     public void validatingConstructorWithoutLogin() {
         mainPage.clickOnSaucesMenu();
         boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
