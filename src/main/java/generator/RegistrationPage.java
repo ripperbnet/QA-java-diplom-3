@@ -43,4 +43,10 @@ public class RegistrationPage extends RegistrationPageObject {
                 .until(ExpectedConditions.visibilityOfElementLocated(registrationButton));
         webDriver.findElement(registrationButton).click();
     }
+
+    public boolean isErrorMessageDisplayed() {
+        new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
+        return webDriver.findElement(errorMessage).isDisplayed();
+    }
 }

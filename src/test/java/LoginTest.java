@@ -11,14 +11,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
 
-
 import java.time.Duration;
 
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class RegistrationTest {
+public class LoginTest {
 
     private WebDriver webDriver;
 
@@ -26,17 +23,17 @@ public class RegistrationTest {
 
     private OrderPage orderPage;
 
-    private RegistrationPage registrationPage;
-
     private MainPage mainPage;
 
-    private String email = "dinosaur" + RandomStringUtils.randomNumeric(4) + "@yandex.ru";
+    private RegistrationPage registrationPage;
 
-    private String password = "password";
+    private String emailForLogin = "test-client-practice@yandex.ru";
 
-    private String name = "Test-name";
+    private String password = "123456";
 
+    private String emailForRegistration = "test-clients" + RandomStringUtils.randomNumeric(3) + "@yandex.ru";
 
+    private String name = "text-name";
 
     @Before
     public void setUpChrome() {
@@ -44,7 +41,7 @@ public class RegistrationTest {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        webDriver.get("https://stellarburgers.nomoreparties.site/");
+        webDriver.get("https://stellarburgers.nomoreparties.site");
         loginPage = new LoginPage(webDriver);
         registrationPage = new RegistrationPage(webDriver);
         orderPage = new OrderPage(webDriver);
@@ -60,21 +57,32 @@ public class RegistrationTest {
     }
 
     @Test
-    public void creatingUseWithValidData() {
+    public void loginByClickingTheLoginButton() {
         mainPage.clickOnLoginButton();
-        registrationPage.clickOnRegistrationButton();
-        registrationPage.setRegistrationData(name, email, password);
-        registrationPage.clickOnStartRegistrationButton();
-        assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
+        loginPage.setLoginData(emailForLogin, password);
+        loginPage.clickOnLoginButtonWithCreatedUser();
+        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isButtonDisplayed);
     }
 
     @Test
-    public void creatingUserWithInvalidPassword() {
+    public void loginByPersonalAccountButton() {
+        mainPage.clickOnPersonalAccountButton();
+        loginPage.setLoginData(emailForLogin, password);
+        loginPage.clickOnLoginButtonWithCreatedUser();
+        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isButtonDisplayed);
+    }
+
+    @Test
+    public void loginViaRegistrationForm() {
         mainPage.clickOnLoginButton();
         registrationPage.clickOnRegistrationButton();
-        registrationPage.setRegistrationData(name, email, "12345");
+        registrationPage.setRegistrationData(name, emailForRegistration, password);
         registrationPage.clickOnStartRegistrationButton();
-        boolean isErrorDisplayed = registrationPage.isErrorMessageDisplayed();;
-        assertTrue("Error message is not displayed", isErrorDisplayed);
+        loginPage.setLoginData(emailForRegistration, password);
+        loginPage.clickOnLoginButtonWithCreatedUser();
+        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isButtonDisplayed);
     }
 }

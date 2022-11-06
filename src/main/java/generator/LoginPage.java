@@ -13,11 +13,7 @@ public class LoginPage extends LoginPageObject {
         super(webDriver);
     }
 
-    public void clickOnLoginButton() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
-        webDriver.findElement(loginButton).click();
-    }
+
 
     public void setEmail(String email) {
         webDriver.findElement(emailField).sendKeys(email);
@@ -36,5 +32,11 @@ public class LoginPage extends LoginPageObject {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginAfterRegistrationButton));
         webDriver.findElement(loginAfterRegistrationButton).click();
+    }
+
+    public String getURL() {
+        new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/login"));
+       return webDriver.getCurrentUrl();
     }
 }
