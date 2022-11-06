@@ -1,3 +1,5 @@
+package google_chrome;
+
 import generator.LoginPage;
 import generator.MainPage;
 import generator.OrderPage;
@@ -81,6 +83,17 @@ public class LoginTest {
         registrationPage.setRegistrationData(name, emailForRegistration, password);
         registrationPage.clickOnStartRegistrationButton();
         loginPage.setLoginData(emailForRegistration, password);
+        loginPage.clickOnLoginButtonWithCreatedUser();
+        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isButtonDisplayed);
+    }
+
+    @Test
+    public void loginViaPasswordRecoverForm() {
+        mainPage.clickOnLoginButton();
+        loginPage.clickOnPasswordRecoverButton();
+        loginPage.clickOnLoginButtonInRecoverPWForm();
+        loginPage.setLoginData(emailForLogin, password);
         loginPage.clickOnLoginButtonWithCreatedUser();
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);

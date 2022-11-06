@@ -1,3 +1,5 @@
+package google_chrome;
+
 import generator.LoginPage;
 import generator.MainPage;
 import generator.OrderPage;
