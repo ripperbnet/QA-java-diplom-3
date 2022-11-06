@@ -1,11 +1,8 @@
 package yandex_browser;
 
-import generator.LoginPage;
-import generator.MainPage;
-import generator.OrderPage;
-import generator.RegistrationPage;
+import generator.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,25 +15,21 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-public class LoginTest {
+public class PersonalAccountTest {
 
     private WebDriver webDriver;
 
     private LoginPage loginPage;
 
-    private OrderPage orderPage;
-
     private MainPage mainPage;
 
-    private RegistrationPage registrationPage;
+    private ProfilePage profilePage;
 
-    private String emailForLogin = "test-client-practice@yandex.ru";
+    private OrderPage orderPage;
+
+    private String email = "test-client-practice@yandex.ru";
 
     private String password = "123456";
-
-    private String emailForRegistration = "test-clients" + RandomStringUtils.randomNumeric(3) + "@yandex.ru";
-
-    private String name = "text-name";
 
     @Before
     public void setUpYandex() {
@@ -46,9 +39,9 @@ public class LoginTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         webDriver.get("https://stellarburgers.nomoreparties.site");
         loginPage = new LoginPage(webDriver);
-        registrationPage = new RegistrationPage(webDriver);
-        orderPage = new OrderPage(webDriver);
+        profilePage = new ProfilePage(webDriver);
         mainPage = new MainPage(webDriver);
+        orderPage = new OrderPage(webDriver);
     }
 
     @After
@@ -60,51 +53,53 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Логин по кнопке «Войти в аккаунт»")
-    @Description("Positive test on google yandex browser")
-    public void loginByClickingTheLoginButton() {
-        mainPage.clickOnLoginButton();
-        loginPage.setLoginData(emailForLogin, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
-        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
-        assertTrue("Button is not displayed", isButtonDisplayed);
-    }
-
-    @Test
-    @DisplayName("Логин по кнопке «Личный кабинет»")
+    @DisplayName("Проверка перехода в личный кабинет по кнопке «Личный кабинет»")
     @Description("Позитивный тест из браузера yandex browser")
-    public void loginByPersonalAccountButton() {
+    public void loginVerificationInPersonalAccount() {
+        mainPage.clickOnLoginButton();
+        loginPage.setLoginData(email, password);
+        loginPage.clickOnLoginButtonWithCreatedUser();
         mainPage.clickOnPersonalAccountButton();
-        loginPage.setLoginData(emailForLogin, password);
+        boolean isExitButtonDisplayed = profilePage.isExitButtonDisplayed();
+        assertTrue("Button is not displayed", isExitButtonDisplayed);
+    }
+
+    @Test
+    @DisplayName("Переход в конструктор по кнопке «Конструктор» из личного кабинета")
+    @Description("Позитивный тест из браузера yandex browser")
+    public void clickOnConstructorFromPersonalAccount() {
+        mainPage.clickOnLoginButton();
+        loginPage.setLoginData(email, password);
         loginPage.clickOnLoginButtonWithCreatedUser();
+        mainPage.clickOnPersonalAccountButton();
+        profilePage.clickOnConstructorButton();
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);
     }
 
     @Test
-    @DisplayName("Логин через форму регистрации")
+    @DisplayName("Переход в конструктор по клику на логотип")
     @Description("Позитивный тест из браузера yandex browser")
-    public void loginViaRegistrationForm() {
+    public void clickOnBurgersLogoFromPersonalAccount() {
         mainPage.clickOnLoginButton();
-        registrationPage.clickOnRegistrationButton();
-        registrationPage.setRegistrationData(name, emailForRegistration, password);
-        registrationPage.clickOnStartRegistrationButton();
-        loginPage.setLoginData(emailForRegistration, password);
+        loginPage.setLoginData(email, password);
         loginPage.clickOnLoginButtonWithCreatedUser();
+        mainPage.clickOnPersonalAccountButton();
+        profilePage.clickOnStellarBurgerLogo();
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);
     }
 
     @Test
-    @DisplayName("Логин через форму восстановления пароля")
+    @DisplayName("Выход из аккаунта по кнопке «Выход» из личного кабинета")
     @Description("Позитивный тест из браузера yandex browser")
-    public void loginViaPasswordRecoverForm() {
+    public void clickOnExitButton() {
         mainPage.clickOnLoginButton();
-        loginPage.clickOnPasswordRecoverButton();
-        loginPage.clickOnLoginButtonInRecoverPWForm();
-        loginPage.setLoginData(emailForLogin, password);
+        loginPage.setLoginData(email, password);
         loginPage.clickOnLoginButtonWithCreatedUser();
-        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
-        assertTrue("Button is not displayed", isButtonDisplayed);
+        mainPage.clickOnPersonalAccountButton();
+        profilePage.clickOnExitButton();
+        boolean isPWRecoverButtonDisplayed = loginPage.isPassWordRecoverButtonDisplayed();
+        assertTrue("Button is not displayed", isPWRecoverButtonDisplayed);
     }
 }

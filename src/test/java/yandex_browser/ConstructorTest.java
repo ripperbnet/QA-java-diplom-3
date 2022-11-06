@@ -38,7 +38,6 @@ public class ConstructorTest {
 
     @Before
     public void setUpYandex() {
-
         System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -78,7 +77,7 @@ public class ConstructorTest {
 
     @Test
     @DisplayName("Проверка отображения булок/соусов/начинок в конструкторе БЕЗ логина")
-
+    @Description("Позитивный тест из браузера yandex browser")
     public void validatingConstructorWithoutLogin() {
         mainPage.clickOnSaucesMenu();
         boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
