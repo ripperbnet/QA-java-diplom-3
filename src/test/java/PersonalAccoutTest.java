@@ -57,7 +57,7 @@ public class PersonalAccoutTest {
     }
 
     @After
-    public void tearDownChrome() {
+    public void tearDown() {
         webDriver.manage().deleteAllCookies();
         ((WebStorage) webDriver).getSessionStorage().clear();
         ((WebStorage) webDriver).getLocalStorage().clear();

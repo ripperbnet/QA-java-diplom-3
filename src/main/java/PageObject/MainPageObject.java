@@ -25,4 +25,6 @@ public class MainPageObject extends Config {
     protected By ImmortalClamMeat = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Мясо бессмертных моллюсков Protostomia']");
 
     protected By r2D3Bun = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Флюоресцентная булка R2-D3']");
+
+    protected By typeOfIngredientChosen = By.xpath(".//div[@style='display: flex;']");
 }
