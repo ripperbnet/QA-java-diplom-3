@@ -31,7 +31,7 @@ public class PersonalAccoutTest {
     private String password = "123456";
 
     @Before
-    public void setUpChrome() {
+    public void setUpBrowser() {
         if (chooseBrowser == "chrome") {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();

@@ -39,7 +39,7 @@ public class RegistrationTest {
 
 
     @Before
-    public void setUpChrome() {
+    public void setUpBrowser() {
         if (chooseBrowser == "chrome") {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
