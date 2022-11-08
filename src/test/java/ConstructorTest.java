@@ -1,5 +1,3 @@
-package google_chrome;
-
 import steps.LoginPage;
 import steps.MainPage;
 import steps.OrderPage;
@@ -20,15 +18,14 @@ import static org.junit.Assert.assertTrue;
 
 public class ConstructorTest {
 
+    // Выбор браузера chrome/yandex
+    private String chooseBrowser = "yandex";
+
     private WebDriver webDriver;
 
     private LoginPage loginPage;
 
-    private OrderPage orderPage;
-
     private MainPage mainPage;
-
-    private RegistrationPage registrationPage;
 
     private String email = "test-client-practice@yandex.ru";
 
@@ -38,15 +35,24 @@ public class ConstructorTest {
 
     @Before
     public void setUpChrome() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        webDriver.get("https://stellarburgers.nomoreparties.site");
-        loginPage = new LoginPage(webDriver);
-        registrationPage = new RegistrationPage(webDriver);
-        orderPage = new OrderPage(webDriver);
-        mainPage = new MainPage(webDriver);
+        if (chooseBrowser == "chrome") {
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            mainPage = new MainPage(webDriver);
+        }
+        else if (chooseBrowser == "yandex") {
+            System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            mainPage = new MainPage(webDriver);
+        }
     }
 
     @After
@@ -62,14 +68,16 @@ public class ConstructorTest {
     @Description("Позитивный тест из браузера google chrome")
     public void validatingConstructorAfterLogin() {
         mainPage.clickOnLoginButton();
-        loginPage.setLoginData(email, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(email, password);
+
         mainPage.clickOnSaucesMenu();
         boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
         assertTrue("Sauce is not displayed", isSauceDisplayed);
+
         mainPage.clickOnFillsMenu();
         boolean isFillDisplayed = mainPage.isFillConstructorDisplayed();
         assertTrue("Fill is not displayed", isFillDisplayed);
+
         mainPage.ClickOnBunsMenu();
         boolean isBunDisplayed = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunDisplayed);
@@ -82,9 +90,11 @@ public class ConstructorTest {
         mainPage.clickOnSaucesMenu();
         boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
         assertTrue("Sauce is not displayed", isSauceDisplayed);
+
         mainPage.clickOnFillsMenu();
         boolean isFillDisplayed = mainPage.isFillConstructorDisplayed();
         assertTrue("Fill is not displayed", isFillDisplayed);
+
         mainPage.ClickOnBunsMenu();
         boolean isBunDisplayed = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunDisplayed);

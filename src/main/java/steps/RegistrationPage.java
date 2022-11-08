@@ -13,6 +13,13 @@ public class RegistrationPage extends RegistrationPageObject {
         super(webDriver);
     }
 
+    public void startRegistration(String name, String email, String password) {
+        clickOnRegistrationButton();
+        setRegistrationData(name, email, password);
+        clickOnStartRegistrationButton();
+
+    }
+
     @Step
     public void clickOnRegistrationButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))

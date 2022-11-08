@@ -1,5 +1,3 @@
-package google_chrome;
-
 import steps.LoginPage;
 import steps.MainPage;
 import steps.OrderPage;
@@ -22,11 +20,11 @@ import static org.junit.Assert.assertTrue;
 
 public class RegistrationTest {
 
+    // Выбор браузера chrome/yandex
+    private String chooseBrowser = "chrome";
     private WebDriver webDriver;
 
     private LoginPage loginPage;
-
-    private OrderPage orderPage;
 
     private RegistrationPage registrationPage;
 
@@ -42,15 +40,26 @@ public class RegistrationTest {
 
     @Before
     public void setUpChrome() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        webDriver.get("https://stellarburgers.nomoreparties.site/");
-        loginPage = new LoginPage(webDriver);
-        registrationPage = new RegistrationPage(webDriver);
-        orderPage = new OrderPage(webDriver);
-        mainPage = new MainPage(webDriver);
+        if (chooseBrowser == "chrome") {
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            registrationPage = new RegistrationPage(webDriver);
+            mainPage = new MainPage(webDriver);
+        }
+        else if (chooseBrowser == "yandex") {
+            System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            registrationPage = new RegistrationPage(webDriver);
+            mainPage = new MainPage(webDriver);
+        }
     }
 
     @After
@@ -66,9 +75,7 @@ public class RegistrationTest {
     @Description("Позитивный тест из браузера google chrome")
     public void creatingUseWithValidData() {
         mainPage.clickOnLoginButton();
-        registrationPage.clickOnRegistrationButton();
-        registrationPage.setRegistrationData(name, email, password);
-        registrationPage.clickOnStartRegistrationButton();
+        registrationPage.startRegistration(name, email, password);
         assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
     }
 
@@ -77,9 +84,7 @@ public class RegistrationTest {
     @Description("Негативный тест из браузера google chrome")
     public void creatingUserWithInvalidPassword() {
         mainPage.clickOnLoginButton();
-        registrationPage.clickOnRegistrationButton();
-        registrationPage.setRegistrationData(name, email, "12345");
-        registrationPage.clickOnStartRegistrationButton();
+        registrationPage.startRegistration(name, email, "12345");
         boolean isErrorDisplayed = registrationPage.isErrorMessageDisplayed();;
         assertTrue("Error message is not displayed", isErrorDisplayed);
     }

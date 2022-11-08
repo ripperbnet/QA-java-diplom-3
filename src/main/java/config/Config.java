@@ -9,8 +9,4 @@ public abstract class Config {
     protected Config(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-
-
-
-
 }

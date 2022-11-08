@@ -13,6 +13,11 @@ public class LoginPage extends LoginPageObject {
         super(webDriver);
     }
 
+    public void loggingIn(String email, String password) {
+        setLoginData(email, password);
+        clickOnLoginButtonWithCreatedUser();
+    }
+
     @Step
     public void setEmail(String email) {
         webDriver.findElement(emailField).sendKeys(email);

@@ -1,5 +1,3 @@
-package google_chrome;
-
 import steps.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
@@ -16,6 +14,8 @@ import static org.junit.Assert.assertTrue;
 
 public class PersonalAccoutTest {
 
+    // Выбор браузера chrome/yandex
+    private String chooseBrowser = "yandex";
     private WebDriver webDriver;
 
     private LoginPage loginPage;
@@ -32,15 +32,28 @@ public class PersonalAccoutTest {
 
     @Before
     public void setUpChrome() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        webDriver.get("https://stellarburgers.nomoreparties.site");
-        loginPage = new LoginPage(webDriver);
-        profilePage = new ProfilePage(webDriver);
-        mainPage = new MainPage(webDriver);
-        orderPage = new OrderPage(webDriver);
+        if (chooseBrowser == "chrome") {
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            orderPage = new OrderPage(webDriver);
+            mainPage = new MainPage(webDriver);
+            profilePage = new ProfilePage(webDriver);
+        }
+        else if (chooseBrowser == "yandex") {
+            System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            orderPage = new OrderPage(webDriver);
+            mainPage = new MainPage(webDriver);
+            profilePage = new ProfilePage(webDriver);
+        }
     }
 
     @After
@@ -56,8 +69,7 @@ public class PersonalAccoutTest {
     @Description("Позитивный тест из браузера google chrome")
     public void loginVerificationInPersonalAccount() {
         mainPage.clickOnLoginButton();
-        loginPage.setLoginData(email, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(email, password);
         mainPage.clickOnPersonalAccountButton();
         boolean isExitButtonDisplayed = profilePage.isExitButtonDisplayed();
         assertTrue("Button is not displayed", isExitButtonDisplayed);
@@ -67,13 +79,12 @@ public class PersonalAccoutTest {
     @DisplayName("Переход в конструктор по кнопке «Конструктор» из личного кабинета")
     @Description("Позитивный тест из браузера google chrome")
     public void clickOnConstructorFromPersonalAccount() {
-    mainPage.clickOnLoginButton();
-    loginPage.setLoginData(email, password);
-    loginPage.clickOnLoginButtonWithCreatedUser();
-    mainPage.clickOnPersonalAccountButton();
-    profilePage.clickOnConstructorButton();
-    boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
-    assertTrue("Button is not displayed", isButtonDisplayed);
+        mainPage.clickOnLoginButton();
+        loginPage.loggingIn(email, password);
+        mainPage.clickOnPersonalAccountButton();
+        profilePage.clickOnConstructorButton();
+        boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
+        assertTrue("Button is not displayed", isButtonDisplayed);
     }
 
     @Test
@@ -81,8 +92,7 @@ public class PersonalAccoutTest {
     @Description("Позитивный тест из браузера google chrome")
     public void clickOnBurgersLogoFromPersonalAccount() {
         mainPage.clickOnLoginButton();
-        loginPage.setLoginData(email, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(email, password);
         mainPage.clickOnPersonalAccountButton();
         profilePage.clickOnStellarBurgerLogo();
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
@@ -94,8 +104,7 @@ public class PersonalAccoutTest {
     @Description("Позитивный тест из браузера google chrome")
     public void clickOnExitButton() {
         mainPage.clickOnLoginButton();
-        loginPage.setLoginData(email, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(email, password);
         mainPage.clickOnPersonalAccountButton();
         profilePage.clickOnExitButton();
         boolean isPWRecoverButtonDisplayed = loginPage.isPassWordRecoverButtonDisplayed();

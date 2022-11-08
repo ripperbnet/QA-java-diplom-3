@@ -1,5 +1,3 @@
-package google_chrome;
-
 import steps.LoginPage;
 import steps.MainPage;
 import steps.OrderPage;
@@ -20,6 +18,9 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginTest {
 
+    // Выбор браузера chrome/yandex
+    private String chooseBrowser = "chrome";
+
     private WebDriver webDriver;
 
     private LoginPage loginPage;
@@ -34,21 +35,34 @@ public class LoginTest {
 
     private String password = "123456";
 
-    private String emailForRegistration = "test-clients" + RandomStringUtils.randomNumeric(3) + "@yandex.ru";
+    private String emailForRegistration = "valid-test-client" + RandomStringUtils.randomNumeric(3) + "@yandex.ru";
 
     private String name = "text-name";
 
     @Before
     public void setUpChrome() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        webDriver.get("https://stellarburgers.nomoreparties.site");
-        loginPage = new LoginPage(webDriver);
-        registrationPage = new RegistrationPage(webDriver);
-        orderPage = new OrderPage(webDriver);
-        mainPage = new MainPage(webDriver);
+        if (chooseBrowser == "chrome") {
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            registrationPage = new RegistrationPage(webDriver);
+            orderPage = new OrderPage(webDriver);
+            mainPage = new MainPage(webDriver);
+        }
+        else if (chooseBrowser == "yandex") {
+            System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.get("https://stellarburgers.nomoreparties.site");
+            loginPage = new LoginPage(webDriver);
+            registrationPage = new RegistrationPage(webDriver);
+            orderPage = new OrderPage(webDriver);
+            mainPage = new MainPage(webDriver);
+        }
     }
 
     @After
@@ -64,8 +78,7 @@ public class LoginTest {
     @Description("Positive test on google chrome browser")
     public void loginByClickingTheLoginButton() {
         mainPage.clickOnLoginButton();
-        loginPage.setLoginData(emailForLogin, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(emailForLogin, password);
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);
     }
@@ -75,8 +88,7 @@ public class LoginTest {
     @Description("Позитивный тест из браузера google chrome")
     public void loginByPersonalAccountButton() {
         mainPage.clickOnPersonalAccountButton();
-        loginPage.setLoginData(emailForLogin, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(emailForLogin, password);
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);
     }
@@ -86,11 +98,8 @@ public class LoginTest {
     @Description("Позитивный тест из браузера google chrome")
     public void loginViaRegistrationForm() {
         mainPage.clickOnLoginButton();
-        registrationPage.clickOnRegistrationButton();
-        registrationPage.setRegistrationData(name, emailForRegistration, password);
-        registrationPage.clickOnStartRegistrationButton();
-        loginPage.setLoginData(emailForRegistration, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        registrationPage.startRegistration(name, emailForRegistration, password);
+        loginPage.loggingIn(emailForRegistration, password);
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);
     }
@@ -102,8 +111,7 @@ public class LoginTest {
         mainPage.clickOnLoginButton();
         loginPage.clickOnPasswordRecoverButton();
         loginPage.clickOnLoginButtonInRecoverPWForm();
-        loginPage.setLoginData(emailForLogin, password);
-        loginPage.clickOnLoginButtonWithCreatedUser();
+        loginPage.loggingIn(emailForLogin, password);
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
         assertTrue("Button is not displayed", isButtonDisplayed);
     }
