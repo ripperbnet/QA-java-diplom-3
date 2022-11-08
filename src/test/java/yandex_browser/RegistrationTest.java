@@ -1,10 +1,9 @@
 package yandex_browser;
 
-import generator.LoginPage;
-import generator.MainPage;
-import generator.OrderPage;
-import generator.RegistrationPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import steps.LoginPage;
+import steps.MainPage;
+import steps.OrderPage;
+import steps.RegistrationPage;
 import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
-
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;

@@ -10,8 +10,6 @@ public class LoginPageObject extends Config {
         super(webDriver);
     }
 
-  //  protected By loginButton = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg'][text()='Войти в аккаунт']");
-
     protected By emailField = By.xpath(".//input[@class='text input__textfield text_type_main-default'][@name='name'][@value='']");
 
     protected By passwordField = By.xpath(".//input[@class='text input__textfield text_type_main-default'][@name='Пароль']");

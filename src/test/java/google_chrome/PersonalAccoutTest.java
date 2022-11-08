@@ -1,6 +1,6 @@
 package google_chrome;
 
-import generator.*;
+import steps.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.junit.After;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
-
 import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;

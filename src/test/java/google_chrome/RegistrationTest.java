@@ -1,9 +1,9 @@
 package google_chrome;
 
-import generator.LoginPage;
-import generator.MainPage;
-import generator.OrderPage;
-import generator.RegistrationPage;
+import steps.LoginPage;
+import steps.MainPage;
+import steps.OrderPage;
+import steps.RegistrationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -14,8 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
-
-
 import java.time.Duration;
 
 
