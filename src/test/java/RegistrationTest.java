@@ -60,6 +60,9 @@ public class RegistrationTest {
             registrationPage = new RegistrationPage(webDriver);
             mainPage = new MainPage(webDriver);
         }
+        else {
+            System.out.println("Выберете браузер chrome/yandex в тесте RegistrationTest");
+        }
     }
 
     @After

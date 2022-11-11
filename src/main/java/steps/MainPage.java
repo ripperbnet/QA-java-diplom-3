@@ -2,7 +2,6 @@ package steps;
 
 import PageObject.MainPageObject;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,15 +12,6 @@ public class MainPage extends MainPageObject {
     public MainPage(WebDriver webDriver) {
         super(webDriver);
     }
-
-
-    String attributeOfBun = webDriver.findElement(constructorBunsButton).getAttribute("style");
-
-    String attributeOfFill = webDriver.findElement(constructorFillingsButton).getAttribute("style");
-
-    String attributeOfSauce = webDriver.findElement(constructorSauceButton).getAttribute("style");
-
-    String attributeToBe = webDriver.findElement(typeOfIngredientChosen).getAttribute("style");
 
     @Step
     public void clickOnLoginButton() {
@@ -39,45 +29,45 @@ public class MainPage extends MainPageObject {
 
     @Step
     public void clickOnSaucesMenu() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(constructorSauceButton));
+       new WebDriverWait(webDriver, Duration.ofSeconds(10))
+               .until(ExpectedConditions.visibilityOfElementLocated(constructorSauceButton));
         webDriver.findElement(constructorSauceButton).click();
     }
 
     @Step
     public void clickOnFillsMenu() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(constructorFillingsButton));
+                .until(ExpectedConditions.visibilityOfElementLocated(constructorFillingsButton));
         webDriver.findElement(constructorFillingsButton).click();
     }
 
     @Step
     public void ClickOnBunsMenu() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(constructorBunsButton));
+                .until(ExpectedConditions.visibilityOfElementLocated(constructorBunsButton));
         webDriver.findElement(constructorBunsButton).click();
     }
 
     @Step
-    public boolean isSauceConstructorChosen() {
+    public boolean isSauceConstructorDisplayed() {
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(constructorSauceButton));
-        return attributeOfSauce == attributeToBe;
-    //    return webDriver.findElement(constructorSauceButton) == webDriver.findElement(typeOfIngredientChosen);
+                .until(ExpectedConditions.visibilityOfElementLocated(sauceSpicy));
+        return webDriver.findElement(sauceSpicy).isDisplayed();
     }
 
     @Step
-    public boolean isBunConstructorChosen() {
+    public boolean isBunConstructorDisplayed() {
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(constructorBunsButton));
-      //  return webDriver.findElement(constructorBunsButton) == webDriver.findElement(typeOfIngredientChosen);
-        return  attributeToBe == attributeOfBun;
+                .until(ExpectedConditions.visibilityOfElementLocated(r2D3Bun));
+       return webDriver.findElement(r2D3Bun).isDisplayed();
     }
 
     @Step
-    public boolean isFillConstructorChosen() {
+    public boolean isFillConstructorDisplayed() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(constructorFillingsButton));
-        return attributeToBe == attributeOfFill;
+                .until(ExpectedConditions.visibilityOfElementLocated(ImmortalClamMeat));
+        return webDriver.findElement(ImmortalClamMeat).isDisplayed();
     }
 }

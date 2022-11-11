@@ -63,6 +63,9 @@ public class LoginTest {
             orderPage = new OrderPage(webDriver);
             mainPage = new MainPage(webDriver);
         }
+        else {
+            System.out.println("Выберете браузер chrome/yandex в тесте LoginTest");
+        }
     }
 
     @After

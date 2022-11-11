@@ -1,7 +1,5 @@
 import steps.LoginPage;
 import steps.MainPage;
-import steps.OrderPage;
-import steps.RegistrationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -14,13 +12,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
 import java.time.Duration;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ConstructorTest {
 
     // Выбор браузера chrome/yandex
-    private String chooseBrowser = "yandex";
+    private String chooseBrowser = "chrome";
 
     private WebDriver webDriver;
 
@@ -33,8 +30,6 @@ public class ConstructorTest {
     private String password = "123456";
 
     private String emailForRegistration = "test-clients" + RandomStringUtils.randomNumeric(3) + "@yandex.ru";
-
-
 
     @Before
     public void setUpBrowser() {
@@ -56,6 +51,9 @@ public class ConstructorTest {
             loginPage = new LoginPage(webDriver);
             mainPage = new MainPage(webDriver);
         }
+        else {
+            System.out.println("Выберете браузер chrome/yandex в тесте ConstructorTest");
+        }
     }
 
     @After
@@ -73,16 +71,17 @@ public class ConstructorTest {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);
 
-        mainPage.clickOnSaucesMenu();
-        boolean isSauceDisplayed = mainPage.isSauceConstructorChosen();
-        assertEquals(true, isSauceDisplayed);
-
         mainPage.clickOnFillsMenu();
-        boolean isFillDisplayed = mainPage.isFillConstructorChosen();
+        boolean isFillDisplayed = mainPage.isFillConstructorDisplayed();
         assertTrue("Fill is not displayed", isFillDisplayed);
 
+        mainPage.clickOnSaucesMenu();
+       boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
+        assertTrue("Sauce is not displayed", isSauceDisplayed);
+
+
         mainPage.ClickOnBunsMenu();
-        boolean isBunDisplayed = mainPage.isBunConstructorChosen();
+        boolean isBunDisplayed = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunDisplayed);
     }
 
@@ -90,16 +89,17 @@ public class ConstructorTest {
     @DisplayName("Проверка отображения булок/соусов/начинок в конструкторе БЕЗ логина")
     @Description("Позитивный тест из браузера google chrome")
     public void validatingConstructorWithoutLogin() {
-        mainPage.clickOnSaucesMenu();
-        boolean isSauceDisplayed = mainPage.isSauceConstructorChosen();
-        assertTrue("Sauce is not displayed", isSauceDisplayed);
-
         mainPage.clickOnFillsMenu();
-        boolean isFillDisplayed = mainPage.isFillConstructorChosen();
+        boolean isFillDisplayed = mainPage.isFillConstructorDisplayed();
         assertTrue("Fill is not displayed", isFillDisplayed);
 
+        mainPage.clickOnSaucesMenu();
+        boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
+        assertTrue("Sauce is not displayed", isSauceDisplayed);
+
+
         mainPage.ClickOnBunsMenu();
-        boolean isBunDisplayed = mainPage.isBunConstructorChosen();
+        boolean isBunDisplayed = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunDisplayed);
     }
 }

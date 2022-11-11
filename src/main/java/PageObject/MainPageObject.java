@@ -14,17 +14,15 @@ public class MainPageObject extends Config {
 
     protected By loginButton = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg'][text()='Войти в аккаунт']");
 
-    protected By constructorSauceButton = By.xpath(".//span[@class='text text_type_main-default'][text()='Соусы']");
+    protected By constructorSauceButton = By.xpath(".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect'][2]");
 
-    protected By constructorFillingsButton = By.xpath(".//span[@class='text text_type_main-default'][text()='Начинки']");
+    protected By constructorFillingsButton = By.xpath(".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect'][2]");
 
-    protected By constructorBunsButton = By.xpath(".//span[@class='text text_type_main-default'][text()='Булки']");
+    protected By constructorBunsButton = By.xpath(".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect'][1]");
 
     protected By sauceSpicy = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Соус Spicy-X']");
 
     protected By ImmortalClamMeat = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Мясо бессмертных моллюсков Protostomia']");
 
     protected By r2D3Bun = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Флюоресцентная булка R2-D3']");
-
-    protected By typeOfIngredientChosen = By.xpath(".//div[@style='display: flex;']");
 }

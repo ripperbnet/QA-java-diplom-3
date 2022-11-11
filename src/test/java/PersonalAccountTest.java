@@ -12,7 +12,7 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-public class PersonalAccoutTest {
+public class PersonalAccountTest {
 
     // Выбор браузера chrome/yandex
     private String chooseBrowser = "yandex";
@@ -53,6 +53,9 @@ public class PersonalAccoutTest {
             orderPage = new OrderPage(webDriver);
             mainPage = new MainPage(webDriver);
             profilePage = new ProfilePage(webDriver);
+        }
+        else {
+            System.out.println("Выберете браузер chrome/yandex в тесте PersonalAccountTest");
         }
     }
 
