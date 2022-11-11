@@ -1,62 +1,18 @@
-import steps.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import config.BaseTest;
+import io.qameta.allure.junit4.DisplayName;
 import jdk.jfr.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.WebStorage;
-import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-public class PersonalAccountTest {
-
-    // Выбор браузера chrome/yandex
-    private String chooseBrowser = "yandex";
-    private WebDriver webDriver;
-
-    private LoginPage loginPage;
-
-    private MainPage mainPage;
-
-    private ProfilePage profilePage;
-
-    private OrderPage orderPage;
-
-    private String email = "test-client-practice@yandex.ru";
-
-    private String password = "123456";
+public class PersonalAccountTest extends BaseTest {
 
     @Before
-    public void setUpBrowser() {
-        if (chooseBrowser == "chrome") {
-            WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
-            webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-            webDriver.get("https://stellarburgers.nomoreparties.site");
-            loginPage = new LoginPage(webDriver);
-            orderPage = new OrderPage(webDriver);
-            mainPage = new MainPage(webDriver);
-            profilePage = new ProfilePage(webDriver);
-        }
-        else if (chooseBrowser == "yandex") {
-            System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
-            webDriver = new ChromeDriver();
-            webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-            webDriver.get("https://stellarburgers.nomoreparties.site");
-            loginPage = new LoginPage(webDriver);
-            orderPage = new OrderPage(webDriver);
-            mainPage = new MainPage(webDriver);
-            profilePage = new ProfilePage(webDriver);
-        }
-        else {
-            System.out.println("Выберете браузер chrome/yandex в тесте PersonalAccountTest");
-        }
+    public void setUp() {
+        setUpBrowserForPersonalAccountTest();
     }
 
     @After

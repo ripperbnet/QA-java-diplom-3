@@ -1,6 +1,6 @@
 package steps;
 
-import PageObject.MainPageObject;
+import page_object.MainPageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,42 +13,42 @@ public class MainPage extends MainPageObject {
         super(webDriver);
     }
 
-    @Step
+    @Step("Клик на кнопку логина")
     public void clickOnLoginButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
         webDriver.findElement(loginButton).click();
     }
 
-    @Step
+    @Step("Клик на кнопку личного кабинета")
     public void clickOnPersonalAccountButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(personalAccountButton));
         webDriver.findElement(personalAccountButton).click();
     }
 
-    @Step
+    @Step("Клик на кнопку выбора соусов")
     public void clickOnSaucesMenu() {
        new WebDriverWait(webDriver, Duration.ofSeconds(10))
                .until(ExpectedConditions.visibilityOfElementLocated(constructorSauceButton));
         webDriver.findElement(constructorSauceButton).click();
     }
 
-    @Step
+    @Step("Клик на кнопку выбора начинок")
     public void clickOnFillsMenu() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(constructorFillingsButton));
         webDriver.findElement(constructorFillingsButton).click();
     }
 
-    @Step
-    public void ClickOnBunsMenu() {
+    @Step("Клик на кнопку выбора булок")
+    public void сlickOnBunsMenu() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(constructorBunsButton));
         webDriver.findElement(constructorBunsButton).click();
     }
 
-    @Step
+    @Step("Проверка отображения конструктора соусов")
     public boolean isSauceConstructorDisplayed() {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
@@ -56,7 +56,7 @@ public class MainPage extends MainPageObject {
         return webDriver.findElement(sauceSpicy).isDisplayed();
     }
 
-    @Step
+    @Step("Проверка отображения конструктора булок")
     public boolean isBunConstructorDisplayed() {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
@@ -64,7 +64,7 @@ public class MainPage extends MainPageObject {
        return webDriver.findElement(r2D3Bun).isDisplayed();
     }
 
-    @Step
+    @Step("Проверка отображения конструктора начинок")
     public boolean isFillConstructorDisplayed() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(ImmortalClamMeat));

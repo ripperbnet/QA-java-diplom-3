@@ -1,6 +1,6 @@
 package steps;
 
-import PageObject.RegistrationPageObject;
+import page_object.RegistrationPageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,29 +20,29 @@ public class RegistrationPage extends RegistrationPageObject {
 
     }
 
-    @Step
+    @Step("Клик на кнопку регистрация")
     public void clickOnRegistrationButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlMatches("https://stellarburgers.nomoreparties.site/login"));
         webDriver.findElement(registerButton).click();
     }
 
-    @Step
+    @Step("Ввод имени")
     public void setName(String name) {
         webDriver.findElement(nameField).sendKeys(name);
     }
 
-    @Step
+    @Step("Ввод почты")
     public void setEmail(String email) {
         webDriver.findElement(emailField).sendKeys(email);
     }
 
-    @Step
+    @Step("Ввод пароля")
     public void setPassword(String password) {
         webDriver.findElement(passwordField).sendKeys(password);
     }
 
-    @Step
+    @Step("Ввод имени, почты и пароля")
     public void setRegistrationData(String name, String email, String password) {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(nameField));
@@ -51,14 +51,14 @@ public class RegistrationPage extends RegistrationPageObject {
         setPassword(password);
     }
 
-    @Step
+    @Step("Клик на кнопку начала регистрации")
     public void clickOnStartRegistrationButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(registrationButton));
         webDriver.findElement(registrationButton).click();
     }
 
-    @Step
+    @Step("Проверка отображения сообщения об ошибке")
     public boolean isErrorMessageDisplayed() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(errorMessage));

@@ -1,6 +1,6 @@
 package steps;
 
-import PageObject.OrderPageObject;
+import page_object.OrderPageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,7 +13,7 @@ public class OrderPage extends OrderPageObject {
         super(webDriver);
     }
 
-    @Step
+    @Step("Проверка отображения кнопки создания заказов")
     public boolean isOrderButtonDisplayed() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(createOrderButton));

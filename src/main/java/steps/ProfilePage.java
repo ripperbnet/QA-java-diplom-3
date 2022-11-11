@@ -1,6 +1,6 @@
 package steps;
 
-import PageObject.ProfilePageObject;
+import page_object.ProfilePageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,28 +13,28 @@ public class ProfilePage extends ProfilePageObject {
         super(webDriver);
     }
 
-    @Step
+    @Step("Клик на кнопку конструктор")
     public void clickOnConstructorButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(constructorButton));
         webDriver.findElement(constructorButton).click();
     }
 
-    @Step
+    @Step("Клик на логотип Stellar Burger")
     public void clickOnStellarBurgerLogo() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(stellarBurgersLogo));
         webDriver.findElement(stellarBurgersLogo).click();
     }
 
-    @Step
+    @Step("Клик на кнопку выхода")
     public void clickOnExitButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(exitButton));
         webDriver.findElement(exitButton).click();
     }
 
-    @Step
+    @Step("Проверка отображения кнопки выхода")
     public boolean isExitButtonDisplayed() {
         new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(exitButton));
