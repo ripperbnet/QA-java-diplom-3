@@ -25,7 +25,7 @@ public class PersonalAccountTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка перехода в личный кабинет по кнопке «Личный кабинет»")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void loginVerificationInPersonalAccount() {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);
@@ -36,7 +36,7 @@ public class PersonalAccountTest extends BaseTest {
 
     @Test
     @DisplayName("Переход в конструктор по кнопке «Конструктор» из личного кабинета")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void clickOnConstructorFromPersonalAccount() {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);
@@ -48,7 +48,7 @@ public class PersonalAccountTest extends BaseTest {
 
     @Test
     @DisplayName("Переход в конструктор по клику на логотип")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void clickOnBurgersLogoFromPersonalAccount() {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);
@@ -60,7 +60,7 @@ public class PersonalAccountTest extends BaseTest {
 
     @Test
     @DisplayName("Выход из аккаунта по кнопке «Выход» из личного кабинета")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void clickOnExitButton() {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);

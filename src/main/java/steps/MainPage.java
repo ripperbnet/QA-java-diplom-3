@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class MainPage extends MainPageObject {
 
@@ -29,45 +30,40 @@ public class MainPage extends MainPageObject {
 
     @Step("Клик на кнопку выбора соусов")
     public void clickOnSaucesMenu() {
-       new WebDriverWait(webDriver, Duration.ofSeconds(10))
-               .until(ExpectedConditions.visibilityOfElementLocated(constructorSauceButton));
+        new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriver.findElement(constructorSauceButton).click();
     }
 
     @Step("Клик на кнопку выбора начинок")
     public void clickOnFillsMenu() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(constructorFillingsButton));
+        new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriver.findElement(constructorFillingsButton).click();
     }
 
     @Step("Клик на кнопку выбора булок")
     public void сlickOnBunsMenu() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(constructorBunsButton));
+        new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriver.findElement(constructorBunsButton).click();
     }
 
     @Step("Проверка отображения конструктора соусов")
     public boolean isSauceConstructorDisplayed() {
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(sauceSpicy));
-        return webDriver.findElement(sauceSpicy).isDisplayed();
+        new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        String attributeSauce = webDriver.findElement(constructorSauceButtonParent).getAttribute("class");
+        return attributeSauce.equals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect");
     }
 
     @Step("Проверка отображения конструктора булок")
     public boolean isBunConstructorDisplayed() {
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(r2D3Bun));
-       return webDriver.findElement(r2D3Bun).isDisplayed();
+        new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        String attributeBun = webDriver.findElement(constructorBunsButtonParent).getAttribute("class");
+       return attributeBun.equals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect");
     }
 
     @Step("Проверка отображения конструктора начинок")
     public boolean isFillConstructorDisplayed() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(ImmortalClamMeat));
-        return webDriver.findElement(ImmortalClamMeat).isDisplayed();
+        new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        String attributeFill = webDriver.findElement(constructorFillsButtonParent).getAttribute("class");
+        return attributeFill.equals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect");
     }
 }

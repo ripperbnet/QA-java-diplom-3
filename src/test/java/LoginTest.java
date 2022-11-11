@@ -25,8 +25,9 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Логин по кнопке «Войти в аккаунт»")
-    @Description("Positive test on google chrome browser")
+    @Description("Позитивный тест")
     public void loginByClickingTheLoginButton() {
+
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(emailForLogin, password);
         boolean isButtonDisplayed = orderPage.isOrderButtonDisplayed();
@@ -35,7 +36,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Логин по кнопке «Личный кабинет»")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void loginByPersonalAccountButton() {
         mainPage.clickOnPersonalAccountButton();
         loginPage.loggingIn(emailForLogin, password);
@@ -45,7 +46,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Логин через форму регистрации")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void loginViaRegistrationForm() {
         mainPage.clickOnLoginButton();
         registrationPage.startRegistration(name, emailForRegistration, password);
@@ -56,7 +57,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Логин через форму восстановления пароля")
-    @Description("Позитивный тест из браузера google chrome")
+    @Description("Позитивный тест")
     public void loginViaPasswordRecoverForm() {
         mainPage.clickOnLoginButton();
         loginPage.clickOnPasswordRecoverButton();

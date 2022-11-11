@@ -26,8 +26,8 @@ public class RegistrationTest extends BaseTest {
 
     @Test
     @DisplayName("Регистрация пользователя с валидными данными")
-    @Description("Позитивный тест из браузера google chrome")
-    public void creatingUseWithValidData() {
+    @Description("Позитивный тест")
+    public void creatingUserWithValidData() {
         mainPage.clickOnLoginButton();
         registrationPage.startRegistration(name, emailForRegistration, password);
         assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
@@ -35,7 +35,7 @@ public class RegistrationTest extends BaseTest {
 
     @Test
     @DisplayName("Регистрация пользователя с невалидным паролем (5 символов)")
-    @Description("Негативный тест из браузера google chrome")
+    @Description("Негативный тест")
     public void creatingUserWithInvalidPassword() {
         mainPage.clickOnLoginButton();
         registrationPage.startRegistration(name, email, "12345");

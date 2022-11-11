@@ -24,41 +24,61 @@ public class ConstructorTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка отображения булок/соусов/начинок в конструкторе после логина")
-    @Description("Позитивный тест из браузера google chrome")
-    public void validatingConstructorAfterLogin() {
+    @DisplayName("Проверка отображения начинок в конструкторе после логина")
+    @Description("Позитивный тест")
+    public void validatingConstructorFillsAfterLogin() {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);
-
         mainPage.clickOnFillsMenu();
-        boolean isFillDisplayed = mainPage.isFillConstructorDisplayed();
-        assertTrue("Fill is not displayed", isFillDisplayed);
-
-        mainPage.clickOnSaucesMenu();
-       boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
-        assertTrue("Sauce is not displayed", isSauceDisplayed);
-
-
-        mainPage.сlickOnBunsMenu();
-        boolean isBunDisplayed = mainPage.isBunConstructorDisplayed();
-        assertTrue("Bun is not displayed", isBunDisplayed);
+        boolean isFillChosen = mainPage.isFillConstructorDisplayed();
+        assertTrue("Fill is not displayed", isFillChosen);
     }
 
     @Test
-    @DisplayName("Проверка отображения булок/соусов/начинок в конструкторе БЕЗ логина")
-    @Description("Позитивный тест из браузера google chrome")
-    public void validatingConstructorWithoutLogin() {
-        mainPage.clickOnFillsMenu();
-        boolean isFillDisplayed = mainPage.isFillConstructorDisplayed();
-        assertTrue("Fill is not displayed", isFillDisplayed);
+    @DisplayName("Проверка отображения соусов в конструкторе после логина")
+    @Description("Позитивный тест")
+    public void validatingConstructorSaucesAfterLogin() {
+        mainPage.clickOnLoginButton();
+        loginPage.loggingIn(email, password);
 
         mainPage.clickOnSaucesMenu();
-        boolean isSauceDisplayed = mainPage.isSauceConstructorDisplayed();
-        assertTrue("Sauce is not displayed", isSauceDisplayed);
+        boolean isSauceChosen = mainPage.isSauceConstructorDisplayed();
+        assertTrue("Sauce is not displayed", isSauceChosen);
+    }
 
+    @Test
+    @DisplayName("Проверка отображения булок в конструкторе после логина")
+    @Description("На кнопку булки не нажимаем, так как она уже выделена")
+    public void validatingConstructorBunsAfterLogin() {
+        mainPage.clickOnLoginButton();
+        loginPage.loggingIn(email, password);
+        boolean isBunChosen = mainPage.isBunConstructorDisplayed();
+        assertTrue("Bun is not displayed", isBunChosen);
+    }
 
-        mainPage.сlickOnBunsMenu();
-        boolean isBunDisplayed = mainPage.isBunConstructorDisplayed();
-        assertTrue("Bun is not displayed", isBunDisplayed);
+    @Test
+    @DisplayName("Проверка отображения начинок в конструкторе БЕЗ логина")
+    @Description("Позитивный тест")
+    public void validatingConstructorFillsWithoutLogin() {
+        mainPage.clickOnFillsMenu();
+        boolean isFillChosen = mainPage.isFillConstructorDisplayed();
+        assertTrue("Fill is not displayed", isFillChosen);
+    }
+
+    @Test
+    @DisplayName("Проверка отображения соусов в конструкторе БЕЗ логина")
+    @Description("Позитивный тест")
+    public void validatingConstructorSaucesWithoutLogin() {
+        mainPage.clickOnSaucesMenu();
+        boolean isSauceChosen = mainPage.isSauceConstructorDisplayed();
+        assertTrue("Sauce is not displayed", isSauceChosen);
+    }
+
+    @Test
+    @DisplayName("Проверка отображения булок в конструкторе БЕЗ логина")
+    @Description("На кнопку булки не нажимаем, так как она уже выделена")
+    public void validatingConstructorBunsWithoutLogin() {
+        boolean isBunChosen = mainPage.isBunConstructorDisplayed();
+        assertTrue("Bun is not displayed", isBunChosen);
     }
 }
