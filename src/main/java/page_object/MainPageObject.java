@@ -25,11 +25,4 @@ public class MainPageObject extends Config {
     protected By constructorFillingsButton = By.xpath(".//span[text()='Начинки']");
 
     protected By constructorBunsButton = By.xpath(".//span[text()='Булки']");
-
-
-    protected By sauceSpicy = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Соус Spicy-X']");
-
-    protected By ImmortalClamMeat = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Мясо бессмертных моллюсков Protostomia']");
-
-    protected By r2D3Bun = By.xpath(".//p[@class='BurgerIngredient_ingredient__text__yp3dH'][text()='Флюоресцентная булка R2-D3']");
 }

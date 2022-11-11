@@ -48,10 +48,12 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка отображения булок в конструкторе после логина")
-    @Description("На кнопку булки не нажимаем, так как она уже выделена")
+    @Description("Позитивный тест, сначала выбираем начинки, чтобы проверить переключение")
     public void validatingConstructorBunsAfterLogin() {
         mainPage.clickOnLoginButton();
         loginPage.loggingIn(email, password);
+        mainPage.clickOnFillsMenu();
+        mainPage.сlickOnBunsMenu();
         boolean isBunChosen = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunChosen);
     }
@@ -76,8 +78,10 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка отображения булок в конструкторе БЕЗ логина")
-    @Description("На кнопку булки не нажимаем, так как она уже выделена")
+    @Description("Позитивный тест, сначала выбираем начинки, чтобы проверить переключение")
     public void validatingConstructorBunsWithoutLogin() {
+        mainPage.clickOnFillsMenu();
+        mainPage.сlickOnBunsMenu();
         boolean isBunChosen = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunChosen);
     }

@@ -53,7 +53,7 @@ public class BaseTest {
             mainPage = new MainPage(webDriver);
         }
         else {
-            System.out.println("Выберете браузер chrome/yandex");
+            System.out.println("Выберите браузер chrome/yandex");
         }
     }
 
@@ -81,7 +81,7 @@ public class BaseTest {
             mainPage = new MainPage(webDriver);
         }
         else {
-            System.out.println("Выберете браузер chrome/yandex");
+            System.out.println("Выберите браузер chrome/yandex");
         }
     }
     public void setUpBrowserForPersonalAccountTest() {
@@ -108,7 +108,7 @@ public class BaseTest {
             profilePage = new ProfilePage(webDriver);
         }
         else {
-            System.out.println("Выберете браузер chrome/yandex");
+            System.out.println("Выберите браузер chrome/yandex");
         }
     }
 
@@ -134,7 +134,7 @@ public class BaseTest {
             mainPage = new MainPage(webDriver);
         }
         else {
-            System.out.println("Выберете браузер chrome/yandex");
+            System.out.println("Выберите браузер chrome/yandex");
         }
     }
 }
