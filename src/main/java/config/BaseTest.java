@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import steps.*;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
@@ -38,7 +39,7 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             mainPage = new MainPage(webDriver);
@@ -47,7 +48,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             mainPage = new MainPage(webDriver);
@@ -62,7 +63,7 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             registrationPage = new RegistrationPage(webDriver);
@@ -73,7 +74,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             registrationPage = new RegistrationPage(webDriver);
@@ -89,7 +90,7 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             orderPage = new OrderPage(webDriver);
@@ -100,7 +101,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             orderPage = new OrderPage(webDriver);
@@ -117,7 +118,7 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             registrationPage = new RegistrationPage(webDriver);
@@ -127,7 +128,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "D:\\WebDriver\\bin\\yandexdriver.exe");
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.get("https://stellarburgers.nomoreparties.site");
             loginPage = new LoginPage(webDriver);
             registrationPage = new RegistrationPage(webDriver);

@@ -9,4 +9,10 @@ public abstract class Config {
     protected  Config(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
+
+    private static final String BASE_URI = "https://stellarburgers.nomoreparties.site";
+
+    public static String getBaseUri() {
+        return BASE_URI;
+    }
 }

@@ -22,7 +22,7 @@ public class PersonalAccountTest extends BaseTest {
         ((WebStorage) webDriver).getLocalStorage().clear();
         webDriver.quit();
     }
-
+/*
     @Test
     @DisplayName("Проверка перехода в личный кабинет по кнопке «Личный кабинет»")
     @Description("Позитивный тест")
@@ -68,5 +68,5 @@ public class PersonalAccountTest extends BaseTest {
         profilePage.clickOnExitButton();
         boolean isPWRecoverButtonDisplayed = loginPage.isPassWordRecoverButtonDisplayed();
         assertTrue("Button is not displayed", isPWRecoverButtonDisplayed);
-    }
+    } */
 }

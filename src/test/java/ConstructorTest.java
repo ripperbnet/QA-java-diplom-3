@@ -22,7 +22,7 @@ public class ConstructorTest extends BaseTest {
         ((WebStorage) webDriver).getLocalStorage().clear();
         webDriver.quit();
     }
-
+/*
     @Test
     @DisplayName("Проверка отображения начинок в конструкторе после логина")
     @Description("Позитивный тест")
@@ -84,5 +84,6 @@ public class ConstructorTest extends BaseTest {
         mainPage.сlickOnBunsMenu();
         boolean isBunChosen = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunChosen);
-    }
+    } */
 }
+

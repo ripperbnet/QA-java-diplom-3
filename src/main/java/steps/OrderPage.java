@@ -15,7 +15,7 @@ public class OrderPage extends OrderPageObject {
 
     @Step("Проверка отображения кнопки создания заказов")
     public boolean isOrderButtonDisplayed() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(10))
+        new WebDriverWait(webDriver, 8)
                 .until(ExpectedConditions.visibilityOfElementLocated(createOrderButton));
        return webDriver.findElement(createOrderButton).isDisplayed();
     }
