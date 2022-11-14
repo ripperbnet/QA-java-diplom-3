@@ -31,7 +31,7 @@ public class LoginPage extends LoginPageObject {
 
     @Step("Ввод почты и пароля")
     public void setLoginData(UserLoginRequest userLoginRequest) {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(emailField));
         setEmail(userLoginRequest.getEmail());
         setPassword(userLoginRequest.getPassword());
@@ -39,35 +39,35 @@ public class LoginPage extends LoginPageObject {
 
     @Step("Клик на кнопку логина под созданным раннее пользователем")
     public void clickOnLoginButtonWithCreatedUser() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginAfterRegistrationButton));
         webDriver.findElement(loginAfterRegistrationButton).click();
     }
 
     @Step("Получение URL")
     public String getURL() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/login"));
        return webDriver.getCurrentUrl();
     }
 
     @Step("Клик на кнопку восстановления пароля")
     public void clickOnPasswordRecoverButton() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(passwordRecoverButton));
         webDriver.findElement(passwordRecoverButton).click();
     }
 
     @Step("Клик на кнопку логина в форме восстановления пароля")
     public void clickOnLoginButtonInRecoverPWForm() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButtonInPasswordRecoveryForm));
         webDriver.findElement(loginButtonInPasswordRecoveryForm).click();
     }
 
     @Step("Проверка отображения кнопки восстановления пароля")
     public boolean isPassWordRecoverButtonDisplayed() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(passwordRecoverButton));
         return webDriver.findElement(passwordRecoverButton).isDisplayed();
     }

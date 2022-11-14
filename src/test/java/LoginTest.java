@@ -32,21 +32,20 @@ public class LoginTest extends BaseTest {
     private String token;
     @Before
     public void setUp() {
-      //  setUpBrowserForLoginTest();
         userClient = new UserClient();
     }
 
     @After
     public void tearDown() {
-        webDriver.manage().deleteAllCookies();
-        ((WebStorage) webDriver).getSessionStorage().clear();
-        ((WebStorage) webDriver).getLocalStorage().clear();
-        webDriver.quit();
         if (token != null) {
             userClient.deleteUser(token)
                     .assertThat()
                     .body("message", equalTo("User successfully removed"));
         }
+        webDriver.manage().deleteAllCookies();
+        ((WebStorage) webDriver).getSessionStorage().clear();
+        ((WebStorage) webDriver).getLocalStorage().clear();
+        webDriver.quit();
     }
 
 
@@ -61,13 +60,7 @@ public class LoginTest extends BaseTest {
                 .extract()
                 .path("accessToken");
 
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        webDriver.get("https://stellarburgers.nomoreparties.site/");
-        orderPage = new OrderPage(webDriver);
-        loginPage = new LoginPage(webDriver);
-        mainPage = new MainPage(webDriver);
+        setUpBrowserForLoginTest();
 
 
         UserLoginRequest userLoginRequest = LoginUserRequestGenerator.from(randomUser);

@@ -15,28 +15,28 @@ public class ProfilePage extends ProfilePageObject {
 
     @Step("Клик на кнопку конструктор")
     public void clickOnConstructorButton() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(constructorButton));
         webDriver.findElement(constructorButton).click();
     }
 
     @Step("Клик на логотип Stellar Burger")
     public void clickOnStellarBurgerLogo() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(stellarBurgersLogo));
         webDriver.findElement(stellarBurgersLogo).click();
     }
 
     @Step("Клик на кнопку выхода")
     public void clickOnExitButton() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(exitButton));
         webDriver.findElement(exitButton).click();
     }
 
     @Step("Проверка отображения кнопки выхода")
     public boolean isExitButtonDisplayed() {
-        new WebDriverWait(webDriver, 8)
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(exitButton));
         return webDriver.findElement(exitButton).isDisplayed();
     }

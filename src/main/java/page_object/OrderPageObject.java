@@ -10,5 +10,5 @@ public class OrderPageObject extends Config {
         super(webDriver);
     }
 
-    protected By createOrderButton = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg'][text()='Оформить заказ']");
+    protected By createOrderButton = By.xpath("[text()='Оформить заказ']");
 }

@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>4.4.0</version>
         </dependency>
         <!-- модуль взаимодействия Allure и Junit -->
         <dependency>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.0.3</version>
+            <version>3.8.1</version>
         </dependency>
     </dependencies>
 
