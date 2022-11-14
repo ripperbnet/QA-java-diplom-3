@@ -1,6 +1,6 @@
-package generator_test;
+package generator;
 
-import dto_test.UserCreateRequest;
+import dto.UserCreateRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import page_object.LoginPageObject;

@@ -1,34 +1,44 @@
+import client.UserClient;
 import config.BaseTest;
+import dto.UserCreateRequest;
+import dto.UserLoginRequest;
+import generator.CreateUserRequestGenerator;
+import generator.LoginUserRequestGenerator;
 import io.qameta.allure.junit4.DisplayName;
 import jdk.jfr.Description;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.html5.WebStorage;
 
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertTrue;
 
 public class ConstructorTest extends BaseTest {
 
+
     @Before
     public void setUp() {
-        setUpBrowserForConstructorTest();
+        userClient = new UserClient();
     }
 
-    @After
-    public void tearDown() {
-        webDriver.manage().deleteAllCookies();
-        ((WebStorage) webDriver).getSessionStorage().clear();
-        ((WebStorage) webDriver).getLocalStorage().clear();
-        webDriver.quit();
-    }
-/*
     @Test
     @DisplayName("Проверка отображения начинок в конструкторе после логина")
     @Description("Позитивный тест")
     public void validatingConstructorFillsAfterLogin() {
+        UserCreateRequest randomUser = CreateUserRequestGenerator.getRandomUser();
+        token = userClient.createUser(randomUser)
+                .assertThat()
+                .statusCode(SC_OK)
+                .and()
+                .body("success", equalTo(true))
+                .extract()
+                .path("accessToken");
+
+        setUpBrowserForConstructorTest();
+
+        UserLoginRequest userLoginRequest = LoginUserRequestGenerator.from(randomUser);
         mainPage.clickOnLoginButton();
-        loginPage.loggingIn(email, password);
+        loginPage.loggingIn(userLoginRequest);
         mainPage.clickOnFillsMenu();
         boolean isFillChosen = mainPage.isFillConstructorDisplayed();
         assertTrue("Fill is not displayed", isFillChosen);
@@ -38,9 +48,20 @@ public class ConstructorTest extends BaseTest {
     @DisplayName("Проверка отображения соусов в конструкторе после логина")
     @Description("Позитивный тест")
     public void validatingConstructorSaucesAfterLogin() {
-        mainPage.clickOnLoginButton();
-        loginPage.loggingIn(email, password);
+        UserCreateRequest randomUser = CreateUserRequestGenerator.getRandomUser();
+        token = userClient.createUser(randomUser)
+                .assertThat()
+                .statusCode(SC_OK)
+                .and()
+                .body("success", equalTo(true))
+                .extract()
+                .path("accessToken");
 
+        setUpBrowserForConstructorTest();
+
+        UserLoginRequest userLoginRequest = LoginUserRequestGenerator.from(randomUser);
+        mainPage.clickOnLoginButton();
+        loginPage.loggingIn(userLoginRequest);
         mainPage.clickOnSaucesMenu();
         boolean isSauceChosen = mainPage.isSauceConstructorDisplayed();
         assertTrue("Sauce is not displayed", isSauceChosen);
@@ -50,8 +71,20 @@ public class ConstructorTest extends BaseTest {
     @DisplayName("Проверка отображения булок в конструкторе после логина")
     @Description("Позитивный тест, сначала выбираем начинки, чтобы проверить переключение")
     public void validatingConstructorBunsAfterLogin() {
+        UserCreateRequest randomUser = CreateUserRequestGenerator.getRandomUser();
+        token = userClient.createUser(randomUser)
+                .assertThat()
+                .statusCode(SC_OK)
+                .and()
+                .body("success", equalTo(true))
+                .extract()
+                .path("accessToken");
+
+        setUpBrowserForConstructorTest();
+
+        UserLoginRequest userLoginRequest = LoginUserRequestGenerator.from(randomUser);
         mainPage.clickOnLoginButton();
-        loginPage.loggingIn(email, password);
+        loginPage.loggingIn(userLoginRequest);
         mainPage.clickOnFillsMenu();
         mainPage.сlickOnBunsMenu();
         boolean isBunChosen = mainPage.isBunConstructorDisplayed();
@@ -62,6 +95,7 @@ public class ConstructorTest extends BaseTest {
     @DisplayName("Проверка отображения начинок в конструкторе БЕЗ логина")
     @Description("Позитивный тест")
     public void validatingConstructorFillsWithoutLogin() {
+        setUpBrowserForConstructorTest();
         mainPage.clickOnFillsMenu();
         boolean isFillChosen = mainPage.isFillConstructorDisplayed();
         assertTrue("Fill is not displayed", isFillChosen);
@@ -71,6 +105,7 @@ public class ConstructorTest extends BaseTest {
     @DisplayName("Проверка отображения соусов в конструкторе БЕЗ логина")
     @Description("Позитивный тест")
     public void validatingConstructorSaucesWithoutLogin() {
+        setUpBrowserForConstructorTest();
         mainPage.clickOnSaucesMenu();
         boolean isSauceChosen = mainPage.isSauceConstructorDisplayed();
         assertTrue("Sauce is not displayed", isSauceChosen);
@@ -80,10 +115,11 @@ public class ConstructorTest extends BaseTest {
     @DisplayName("Проверка отображения булок в конструкторе БЕЗ логина")
     @Description("Позитивный тест, сначала выбираем начинки, чтобы проверить переключение")
     public void validatingConstructorBunsWithoutLogin() {
+        setUpBrowserForConstructorTest();
         mainPage.clickOnFillsMenu();
         mainPage.сlickOnBunsMenu();
         boolean isBunChosen = mainPage.isBunConstructorDisplayed();
         assertTrue("Bun is not displayed", isBunChosen);
-    } */
+    }
 }
 

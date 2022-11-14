@@ -22,8 +22,9 @@ public class RegistrationPage extends RegistrationPageObject {
 
     @Step("Клик на кнопку регистрация")
     public void clickOnRegistrationButton() {
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10));
         new WebDriverWait(webDriver,  Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlMatches("https://stellarburgers.nomoreparties.site/login"));
+                .until(ExpectedConditions.elementToBeClickable(registerButton));
         webDriver.findElement(registerButton).click();
     }
 
@@ -54,8 +55,15 @@ public class RegistrationPage extends RegistrationPageObject {
     @Step("Клик на кнопку начала регистрации")
     public void clickOnStartRegistrationButton() {
         new WebDriverWait(webDriver,  Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(registrationButton));
+                .until(ExpectedConditions.elementToBeClickable(registrationButton));
         webDriver.findElement(registrationButton).click();
+    }
+
+    @Step("Клик на кнопку входа")
+    public void clickOnEnterButton() {
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(enterButton));
+        webDriver.findElement(enterButton).click();
     }
 
     @Step("Проверка отображения сообщения об ошибке")

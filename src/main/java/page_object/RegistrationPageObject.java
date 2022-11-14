@@ -21,4 +21,6 @@ public class RegistrationPageObject extends Config {
     protected By registrationButton = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa'][text()='Зарегистрироваться']");
 
     protected By errorMessage = By.xpath(".//p[@class='input__error text_type_main-default'][text()='Некорректный пароль']");
+
+    protected By enterButton = By.xpath(".//a[@class='Auth_link__1fOlj'][text()='Войти']");
 }

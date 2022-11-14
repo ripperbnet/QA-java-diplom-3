@@ -1,6 +1,6 @@
-package dto_test;
+package dto;
 
-public class UserCreateRequest {
+public class UserLoginRequest {
 
     private String email;
 
@@ -8,6 +8,13 @@ public class UserCreateRequest {
 
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;
@@ -23,13 +30,5 @@ public class UserCreateRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

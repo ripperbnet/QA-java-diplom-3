@@ -1,4 +1,4 @@
-package client_test;
+package client;
 
 import config.Config;
 import io.qameta.allure.Step;

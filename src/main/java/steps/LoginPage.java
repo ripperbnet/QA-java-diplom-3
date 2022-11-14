@@ -1,6 +1,6 @@
 package steps;
 
-import dto_test.UserLoginRequest;
+import dto.UserLoginRequest;
 import page_object.LoginPageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;

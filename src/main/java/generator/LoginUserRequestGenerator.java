@@ -1,7 +1,7 @@
-package generator_test;
+package generator;
 
-import dto_test.UserCreateRequest;
-import dto_test.UserLoginRequest;
+import dto.UserCreateRequest;
+import dto.UserLoginRequest;
 
 public class LoginUserRequestGenerator {
 

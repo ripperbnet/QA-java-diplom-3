@@ -15,8 +15,8 @@ public class MainPage extends MainPageObject {
 
     @Step("Клик на кнопку логина")
     public void clickOnLoginButton() {
-        new WebDriverWait(webDriver,  Duration.ofSeconds(10));
-       //    .until(ExpectedConditions.elementToBeClickable(loginButton));
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
+           .until(ExpectedConditions.elementToBeClickable(loginButton));
         webDriver.findElement(loginButton).click();
     }
 
@@ -29,19 +29,22 @@ public class MainPage extends MainPageObject {
 
     @Step("Клик на кнопку выбора соусов")
     public void clickOnSaucesMenu() {
-        new WebDriverWait(webDriver,  Duration.ofSeconds(10));
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(constructorSauceButton));
         webDriver.findElement(constructorSauceButton).click();
     }
 
     @Step("Клик на кнопку выбора начинок")
     public void clickOnFillsMenu() {
-        new WebDriverWait(webDriver,  Duration.ofSeconds(10));
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(constructorFillingsButton));
         webDriver.findElement(constructorFillingsButton).click();
     }
 
     @Step("Клик на кнопку выбора булок")
     public void сlickOnBunsMenu() {
-        new WebDriverWait(webDriver,  Duration.ofSeconds(10));
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(constructorBunsButton));
         webDriver.findElement(constructorBunsButton).click();
     }
 
@@ -64,5 +67,12 @@ public class MainPage extends MainPageObject {
         new WebDriverWait(webDriver,  Duration.ofSeconds(10));
         String attributeFill = webDriver.findElement(constructorFillsButtonParent).getAttribute("class");
         return attributeFill.equals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect");
+    }
+
+    @Step("Проверка изменения URL после логина")
+    public boolean isRightURLDisplayed() {
+        new WebDriverWait(webDriver,  Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
+        return webDriver.getCurrentUrl().equals("https://stellarburgers.nomoreparties.site/");
     }
 }
