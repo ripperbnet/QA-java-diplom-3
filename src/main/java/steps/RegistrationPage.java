@@ -1,5 +1,6 @@
 package steps;
 
+import dto.UserCreateRequest;
 import page_object.RegistrationPageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -13,9 +14,9 @@ public class RegistrationPage extends RegistrationPageObject {
         super(webDriver);
     }
 
-    public void startRegistration(String name, String email, String password) {
+    public void startRegistration(UserCreateRequest userCreateRequest) {
         clickOnRegistrationButton();
-        setRegistrationData(name, email, password);
+        setRegistrationData(userCreateRequest);
         clickOnStartRegistrationButton();
 
     }
@@ -44,12 +45,12 @@ public class RegistrationPage extends RegistrationPageObject {
     }
 
     @Step("Ввод имени, почты и пароля")
-    public void setRegistrationData(String name, String email, String password) {
+    public void setRegistrationData(UserCreateRequest userCreateRequest) {
         new WebDriverWait(webDriver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(nameField));
-        setName(name);
-        setEmail(email);
-        setPassword(password);
+        setName(userCreateRequest.getName());
+        setEmail(userCreateRequest.getEmail());
+        setPassword(userCreateRequest.getPassword());
     }
 
     @Step("Клик на кнопку начала регистрации")

@@ -3,7 +3,10 @@ package client;
 import dto.UserCreateRequest;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+
+import static io.restassured.RestAssured.given;
 
 public class UserClient  extends RestClient {
 
@@ -28,5 +31,13 @@ public class UserClient  extends RestClient {
                 .header("authorization", token)
                 .delete(AUTH_USER)
                 .then();
+    }
+
+    @Step("Создание невалидного пользователя")
+    public Response createUserResponse(UserCreateRequest userCreateRequest) {
+        return   given()
+                .spec(getDefaultRequestSpec())
+                .body(userCreateRequest)
+                .post(AUTH_REGISTER);
     }
 }

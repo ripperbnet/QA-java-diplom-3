@@ -1,8 +1,7 @@
-package config;
+package test_config;
 
 import client.UserClient;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,14 +33,6 @@ public class BaseTest {
     protected ProfilePage profilePage;
 
     protected RegistrationPage registrationPage;
-
-    protected String emailForRegistration = "valid-test-client" + RandomStringUtils.randomNumeric(4) + "@yandex.ru";
-
-    protected String email = "test-client-practice@yandex.ru";
-
-    protected String name = "text-name";
-
-    protected String password = "123456";
 
     public void setUpBrowserForConstructorTest() {
         if (chooseBrowser.equals("chrome")) {

@@ -1,5 +1,5 @@
 import client.UserClient;
-import config.BaseTest;
+import test_config.BaseTest;
 import dto.UserCreateRequest;
 import dto.UserLoginRequest;
 import generator.CreateUserRequestGenerator;

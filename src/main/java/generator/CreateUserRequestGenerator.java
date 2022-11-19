@@ -13,8 +13,8 @@ public class CreateUserRequestGenerator extends LoginPageObject {
 
     public static UserCreateRequest getRandomUser() {
         UserCreateRequest userCreateRequest = new UserCreateRequest();
-        userCreateRequest.setName("test-client" + RandomStringUtils.randomNumeric(4));
-        userCreateRequest.setEmail("test-email" + RandomStringUtils.randomNumeric(4) + "@yandex.ru");
+        userCreateRequest.setName("Oleg" + RandomStringUtils.randomNumeric(3));
+        userCreateRequest.setEmail("my-test-client-email" + RandomStringUtils.randomNumeric(3) + "@yandex.ru");
         userCreateRequest.setPassword("123456");
         return userCreateRequest;
     }
