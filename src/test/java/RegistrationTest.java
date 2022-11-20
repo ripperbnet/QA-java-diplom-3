@@ -1,5 +1,7 @@
 import client.UserClient;
 import dto.UserCreateRequest;
+import dto.UserLoginRequest;
+import generator.LoginUserRequestGenerator;
 import io.restassured.response.Response;
 import test_config.BaseTest;
 import io.qameta.allure.junit4.DisplayName;
@@ -28,11 +30,11 @@ public class RegistrationTest extends BaseTest {
         setUpBrowserForRegistrationTest();
         mainPage.clickOnLoginButton();
         registrationPage.startRegistration(randomUser);
-        Response response = userClient.refreshToken(randomUser);
-        token = response.path("accessToken");
-        System.out.println(token);
+        assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
 
-        //     assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
+        UserLoginRequest userLoginRequest = LoginUserRequestGenerator.from(randomUser);
+        Response response = userClient.loginUser(userLoginRequest);
+        token = response.path("accessToken");
     }
 
     @Test

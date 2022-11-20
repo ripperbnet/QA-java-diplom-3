@@ -1,6 +1,7 @@
 package client;
 
 import dto.UserCreateRequest;
+import dto.UserLoginRequest;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -14,7 +15,7 @@ public class UserClient  extends RestClient {
 
     public static final String AUTH_USER = "/api/auth/user";
 
-    public static final String AUTH_TOKEN = "/api/auth/token";
+    private static final String AUTH_LOGIN = "/api/auth/login/";
 
 
     @Step("Создание пользователя")
@@ -24,6 +25,14 @@ public class UserClient  extends RestClient {
                 .body(userCreateRequest)
                 .post(AUTH_REGISTER)
                 .then();
+    }
+
+    @Step("Логин пользователя")
+    public Response loginUser(UserLoginRequest userLoginRequest) {
+        return given()
+                .spec(getDefaultRequestSpec())
+                .body(userLoginRequest)
+                .post(AUTH_LOGIN);
     }
 
     @Step("Удаление пользователя")
@@ -41,13 +50,5 @@ public class UserClient  extends RestClient {
                 .spec(getDefaultRequestSpec())
                 .body(userCreateRequest)
                 .post(AUTH_REGISTER);
-    }
-
-    @Step("Обновление токена")
-    public Response refreshToken(UserCreateRequest userCreateRequest) {
-        return given()
-                .spec(getDefaultRequestSpec())
-                     .body(userCreateRequest)
-                .post(AUTH_TOKEN);
     }
 }
