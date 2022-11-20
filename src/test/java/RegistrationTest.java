@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static generator.CreateUserRequestGenerator.getRandomUser;
-import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +25,6 @@ public class RegistrationTest extends BaseTest {
     @Description("Позитивный тест")
     public void creatingUserWithValidData() {
         UserCreateRequest randomUser = getRandomUser();
-
         setUpBrowserForRegistrationTest();
         mainPage.clickOnLoginButton();
         registrationPage.startRegistration(randomUser);
