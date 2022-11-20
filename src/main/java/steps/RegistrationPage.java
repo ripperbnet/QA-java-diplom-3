@@ -1,6 +1,7 @@
 package steps;
 
 import dto.UserCreateRequest;
+import org.openqa.selenium.Cookie;
 import page_object.RegistrationPageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +15,26 @@ public class RegistrationPage extends RegistrationPageObject {
         super(webDriver);
     }
 
+ //   @Step("Получаем токен")
+  //  public void getAccessToken() {
+  //      Cookie cookie = webDriver.get("accessToker");
+  //      System.out.println(cookie);
+  //  }
+
+    @Step("Начало регистрации пользователя, невалидный пароль")
+    public void startRegistrationNegative(UserCreateRequest userCreateRequest) {
+        clickOnRegistrationButton();
+        setName(userCreateRequest.getName());
+        setEmail(userCreateRequest.getEmail());
+        setPassword("12345");
+        clickOnStartRegistrationButton();
+    }
+
+    @Step("Начало регистрации пользователя, валидные данные")
     public void startRegistration(UserCreateRequest userCreateRequest) {
         clickOnRegistrationButton();
         setRegistrationData(userCreateRequest);
         clickOnStartRegistrationButton();
-
     }
 
     @Step("Клик на кнопку регистрация")

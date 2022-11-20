@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static generator.CreateUserRequestGenerator.getRandomUser;
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -23,27 +24,29 @@ public class RegistrationTest extends BaseTest {
     @Description("Позитивный тест")
     public void creatingUserWithValidData() {
         UserCreateRequest randomUser = getRandomUser();
+
         setUpBrowserForRegistrationTest();
         mainPage.clickOnLoginButton();
         registrationPage.startRegistration(randomUser);
-        assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
+        Response response = userClient.refreshToken(randomUser);
+        token = response.path("accessToken");
+        System.out.println(token);
+
+        //     assertEquals("https://stellarburgers.nomoreparties.site/login", loginPage.getURL());
     }
 
     @Test
     @DisplayName("Регистрация пользователя с невалидным паролем (5 символов)")
     @Description("Негативный тест")
     public void creatingUserWithInvalidPassword() {
-        UserCreateRequest userCreateRequest = new UserCreateRequest();
-        userCreateRequest.setEmail("test-email444@yandex.ru");
-        userCreateRequest.setName("test-name");
-        userCreateRequest.setPassword("12345");
-        Response response = userClient.createUserResponse(userCreateRequest);
+        UserCreateRequest randomUser = getRandomUser();
+        Response response = userClient.createUserResponse(randomUser);
         token = response.path("accessToken");
 
         setUpBrowserForRegistrationTest();
 
         mainPage.clickOnLoginButton();
-        registrationPage.startRegistration(userCreateRequest);
+        registrationPage.startRegistrationNegative(randomUser);
         boolean isErrorDisplayed = registrationPage.isErrorMessageDisplayed();;
         assertTrue("Error message is not displayed", isErrorDisplayed);
     }

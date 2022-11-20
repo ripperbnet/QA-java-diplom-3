@@ -14,6 +14,8 @@ public class UserClient  extends RestClient {
 
     public static final String AUTH_USER = "/api/auth/user";
 
+    public static final String AUTH_TOKEN = "/api/auth/token";
+
 
     @Step("Создание пользователя")
     public ValidatableResponse createUser(UserCreateRequest userCreateRequest) {
@@ -39,5 +41,13 @@ public class UserClient  extends RestClient {
                 .spec(getDefaultRequestSpec())
                 .body(userCreateRequest)
                 .post(AUTH_REGISTER);
+    }
+
+    @Step("Обновление токена")
+    public Response refreshToken(UserCreateRequest userCreateRequest) {
+        return given()
+                .spec(getDefaultRequestSpec())
+                     .body(userCreateRequest)
+                .post(AUTH_TOKEN);
     }
 }
