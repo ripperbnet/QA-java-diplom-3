@@ -40,14 +40,14 @@ public class RegistrationTest extends BaseTest {
     @Description("Негативный тест")
     public void creatingUserWithInvalidPassword() {
         UserCreateRequest randomUser = getRandomUser();
-        Response response = userClient.createUserResponse(randomUser);
-        token = response.path("accessToken");
-
         setUpBrowserForRegistrationTest();
-
         mainPage.clickOnLoginButton();
-        registrationPage.startRegistrationNegative(randomUser);
+        registrationPage.startRegistrationNegative(randomUser); // с помощью метода startRegistrationNegative вводим невалидный пароль из 5 символов
         boolean isErrorDisplayed = registrationPage.isErrorMessageDisplayed();;
         assertTrue("Error message is not displayed", isErrorDisplayed);
+
+        UserLoginRequest userLoginRequest = LoginUserRequestGenerator.from(randomUser);
+        Response response = userClient.loginUser(userLoginRequest);
+        token = response.path("accessToken");
     }
 }

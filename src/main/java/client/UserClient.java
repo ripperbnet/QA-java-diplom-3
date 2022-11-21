@@ -43,12 +43,4 @@ public class UserClient  extends RestClient {
                 .delete(AUTH_USER)
                 .then();
     }
-
-    @Step("Создание невалидного пользователя")
-    public Response createUserResponse(UserCreateRequest userCreateRequest) {
-        return   given()
-                .spec(getDefaultRequestSpec())
-                .body(userCreateRequest)
-                .post(AUTH_REGISTER);
-    }
 }
