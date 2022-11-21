@@ -14,15 +14,6 @@ public class RegistrationPage extends RegistrationPageObject {
         super(webDriver);
     }
 
-    @Step("Начало регистрации пользователя, невалидный пароль")
-    public void startRegistrationNegative(UserCreateRequest userCreateRequest) {
-        clickOnRegistrationButton();
-        setName(userCreateRequest.getName());
-        setEmail(userCreateRequest.getEmail());
-        setPassword("12345");
-        clickOnStartRegistrationButton();
-    }
-
     @Step("Начало регистрации пользователя, валидные данные")
     public void startRegistration(UserCreateRequest userCreateRequest) {
         clickOnRegistrationButton();

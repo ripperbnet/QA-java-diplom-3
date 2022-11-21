@@ -15,7 +15,15 @@ public class CreateUserRequestGenerator extends LoginPageObject {
         UserCreateRequest userCreateRequest = new UserCreateRequest();
         userCreateRequest.setName("Oleg" + RandomStringUtils.randomNumeric(3));
         userCreateRequest.setEmail("my-test-client-email" + RandomStringUtils.randomNumeric(3) + "@yandex.ru");
-        userCreateRequest.setPassword("123456");
+        userCreateRequest.setPassword(RandomStringUtils.randomNumeric(6));
+        return userCreateRequest;
+    }
+
+    public static UserCreateRequest getRandomUserNegative() {
+        UserCreateRequest userCreateRequest = new UserCreateRequest();
+        userCreateRequest.setName("Oleg" + RandomStringUtils.randomNumeric(3));
+        userCreateRequest.setEmail("my-test-client-email" + RandomStringUtils.randomNumeric(3) + "@yandex.ru");
+        userCreateRequest.setPassword(RandomStringUtils.randomNumeric(5));
         return userCreateRequest;
     }
 }

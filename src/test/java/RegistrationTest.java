@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static generator.CreateUserRequestGenerator.getRandomUser;
+import static generator.CreateUserRequestGenerator.getRandomUserNegative;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -39,10 +40,10 @@ public class RegistrationTest extends BaseTest {
     @DisplayName("Регистрация пользователя с невалидным паролем (5 символов)")
     @Description("Негативный тест")
     public void creatingUserWithInvalidPassword() {
-        UserCreateRequest randomUser = getRandomUser();
+        UserCreateRequest randomUser = getRandomUserNegative();
         setUpBrowserForRegistrationTest();
         mainPage.clickOnLoginButton();
-        registrationPage.startRegistrationNegative(randomUser); // с помощью метода startRegistrationNegative вводим невалидный пароль из 5 символов
+        registrationPage.startRegistration(randomUser);
         boolean isErrorDisplayed = registrationPage.isErrorMessageDisplayed();;
         assertTrue("Error message is not displayed", isErrorDisplayed);
 
